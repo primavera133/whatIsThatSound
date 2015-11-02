@@ -1,0 +1,40 @@
+div
+    button(href='#', ng-show='!loadingSound', ng-click='getSound()') Get sound
+
+div(ng-show="loadingSound") loading...
+
+div(ng-show="haveSound")
+
+    div
+        {{getRemaining()}}
+
+    div(ng-show='getRemaining()')
+        button(ng-click='playSound()') Play sound
+        button(ng-click='pauseSound()') Pause sound
+        button(ng-click='stopSound()') Stop sound
+        button(ng-click='showDataFn()') Show data
+        button(ng-click='getSound()') New sound
+
+    div(ng-show="showData")
+        p
+            span English name:
+            span {{recording.en}}
+        p
+            span Scientific name:
+            span {{recording.gen}} {{recording.sp}} {{recording.spp}}
+        p
+            span Recorder:
+            span {{recording.rec}}
+        p
+            span Location:
+            span {{recording.cnt}} {{recording.loc}}
+        p
+            span Type:
+            span {{recording.type}}
+        p
+            span Quality:
+            span {{recording.q}}
+        p
+            span Time:
+            span {{recording.date}} {{recording.time}}
+
