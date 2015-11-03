@@ -19,6 +19,7 @@ controller('AppCtrl', function ($scope, $http) {
 }).
 controller('MyCtrl1', ['$scope', '$http', 'SoundService', 'ngAudio', function ($scope, $http, soundService, ngAudio) {
 
+    $scope.initSound = true;
     $scope.loadingSound = false;
     $scope.haveSound = false;
 
@@ -28,6 +29,7 @@ controller('MyCtrl1', ['$scope', '$http', 'SoundService', 'ngAudio', function ($
         if ($scope.sound) {
             $scope.sound.stop();
         }
+        $scope.initSound = false;
         $scope.showData = false;
         $scope.loadingSound = true;
 

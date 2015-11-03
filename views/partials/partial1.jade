@@ -1,21 +1,31 @@
-div
-    button(href='#', ng-show='!loadingSound', ng-click='getSound()') Get sound
+div(class='row', ng-show='initSound')
+    div(class='col-sm-6 col-sm-offset-3')
+        button(href='#', ng-show='!loadingSound', ng-click='getSound()', class='btn btn-primary btn-block') Get sound
 
-div(ng-show="loadingSound") loading...
+div(class='row', ng-show="loadingSound")
+    div(class='col-sm-6 col-sm-offset-3') loading...
 
-div(ng-show="haveSound")
-
-    div
+div(class='row', ng-show="haveSound")
+    div(class='col-sm-6 col-sm-offset-3')
         {{getRemaining()}}
 
-    div(ng-show='getRemaining()')
-        button(ng-click='playSound()') Play sound
-        button(ng-click='pauseSound()') Pause sound
-        button(ng-click='stopSound()') Stop sound
-        button(ng-click='showDataFn()') Show data
-        button(ng-click='getSound()') New sound
+div(class='row', ng-show='getRemaining()')
+    div(class='col-sm-6 col-sm-offset-3')
+        div(class='btn-group')
+            button(ng-click='playSound()', class='btn btn-default btn-sm')
+                span(class='glyphicon glyphicon-play') Play sound
+            button(ng-click='pauseSound()', class='btn btn-default btn-sm')
+                span(class='glyphicon glyphicon-pause') Pause sound
+            button(ng-click='stopSound()', class='btn btn-default btn-sm')
+                span(class='glyphicon glyphicon-stop') Stop sound
 
-    div(ng-show="showData")
+div(class='row', ng-show='getRemaining()')
+    div(class='col-sm-6 col-sm-offset-3')
+        button(ng-click='showDataFn()', class='btn btn-default btn-sm') Show data
+        button(ng-click='getSound()', class='btn btn-default btn-sm') New sound
+
+div(class='row', ng-show='showData')
+    div(class='col-sm-6 col-sm-offset-3')
         p
             span English name:
             span {{recording.en}}
