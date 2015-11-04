@@ -12,16 +12,16 @@ angular.module('myApp', [
 ]).
     config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider.
-            when('/view1', {
-                templateUrl: 'partials/partial1',
-                controller: 'MyCtrl1'
+            when('/', {
+                templateUrl: 'partials/choose',
+                controller: 'ChooseController'
             }).
-            when('/view2', {
-                templateUrl: 'partials/partial2',
-                controller: 'MyCtrl2'
+            when('/play/:listId', {
+                templateUrl: 'partials/play',
+                controller: 'PlayController'
             }).
             otherwise({
-                redirectTo: '/view1'
+                redirectTo: '/'
             });
 
         $locationProvider.html5Mode(true);

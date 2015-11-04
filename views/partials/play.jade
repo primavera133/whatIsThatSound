@@ -1,0 +1,40 @@
+div(class='row')
+    div(class='col-sm-6 col-sm-offset-3 wts-plate--bg wts-plate__bottom') 
+        div(ng-show="loadingSound") loading...
+
+        div(ng-show="haveSound")
+            div {{getRemaining()}}
+
+            div(class='btn-group')
+                button(ng-click='playSound()', class='btn btn-default btn-sm')
+                    span(class='glyphicon glyphicon-play') Play sound
+                button(ng-click='pauseSound()', class='btn btn-default btn-sm')
+                    span(class='glyphicon glyphicon-pause') Pause sound
+                button(ng-click='stopSound()', class='btn btn-default btn-sm')
+                    span(class='glyphicon glyphicon-stop') Stop sound
+
+            div
+                button(ng-click='showDataFn()', class='btn btn-default btn-sm') Show data
+                button(ng-click='getSound()', class='btn btn-default btn-sm') New sound
+
+            div(ng-show='showData')
+                h2 {{recording.en}} - {{recording.gen}} {{recording.sp}} {{recording.spp}}
+                p
+                    span Recorded by: 
+                    span {{recording.rec}}
+                p
+                    span Location: 
+                    span {{recording.cnt}} {{recording.loc}}
+                p
+                    span Type: 
+                    span {{recording.type}}
+                p
+                    span Quality: 
+                    span {{recording.q}}
+                p
+                    span Time: 
+                    span {{recording.date}} {{recording.time}}
+        
+                p
+                    span License: 
+                    a(href="{{recording.lic}}") {{recording.lic}}

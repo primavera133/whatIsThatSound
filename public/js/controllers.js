@@ -17,43 +17,50 @@ controller('AppCtrl', function ($scope, $http) {
     });
 
 }).
-controller('MyCtrl1', ['$scope', '$http', 'SoundService', 'ngAudio', function ($scope, $http, soundService, ngAudio) {
+controller('ChooseController', ['$scope', 'BgService', function ($scope, bgService) {
+    if($scope.sound){
+        $scope.sound.stop();
+    }
+    
+    bgService.setBg('choose');
 
-    $scope.initSound = true;
-    $scope.loadingSound = false;
+}]).
+controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'SoundService', 'BgService', function ($scope, $http, $route, ngAudio, soundService, bgService) {
+    if($scope.sound){
+        $scope.sound.stop();
+    }
+
+    var listId = $route.current.params.listId;
+    
+    bgService.setBg(listId);
+
     $scope.haveSound = false;
+    $scope.showData = false;
+    $scope.loadingSound = true;
 
-
-    $scope.getSound = function () {
-
-        if ($scope.sound) {
-            $scope.sound.stop();
+    $http({
+        method: 'GET',
+        url: '/api/getSound',
+        params: {
+            listId: listId
         }
-        $scope.initSound = false;
-        $scope.showData = false;
-        $scope.loadingSound = true;
+    }).
+    success(function (data, status, headers, config) {
 
-        $http({
-            method: 'GET',
-            url: '/api/getSound'
-        }).
-        success(function (data, status, headers, config) {
+        soundService.setSoundData(data);
 
-            soundService.setSoundData(data);
+        $scope.recording = soundService.getRandomRecording();
 
-            $scope.recording = soundService.getRandomRecording();
+        $scope.sound = ngAudio.load($scope.recording.file);
 
-            $scope.sound = ngAudio.load($scope.recording.file);
+        $scope.loadingSound = false;
 
-            $scope.loadingSound = false;
+        $scope.haveSound = true;
 
-            $scope.haveSound = true;
-
-        }).
-        error(function (data, status, headers, config) {
-            console.log('bad', data, status, headers, config);
-        });
-    };
+    }).
+    error(function (data, status, headers, config) {
+        console.log('bad', data, status, headers, config);
+    });
 
     $scope.getRemaining = function () {
         if (!$scope.sound) {
@@ -85,8 +92,4 @@ controller('MyCtrl1', ['$scope', '$http', 'SoundService', 'ngAudio', function ($
 
     }
 
-}]).
-controller('MyCtrl2', function ($scope) {
-    // write Ctrl here
-
-});
+}]);

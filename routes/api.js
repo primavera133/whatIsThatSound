@@ -10,8 +10,9 @@ exports.name = function (req, res) {
     });
 };
 
-var getRandomSpecie = function () {
-    var species = require('../species.js');
+var getRandomSpecie = function (listId) {
+
+    var species = require('../lists/' + listId + '.js');
 
     var rand = Math.floor(Math.random() * species.getSpecies().length);
     var specie = species.getSpecies()[rand];
@@ -30,7 +31,9 @@ var getUrl = function (specie) {
 
 exports.getSound = function (req, res) {
     var request = require('request');
-    var specie = getRandomSpecie();
+    var listId = req.query.listId;
+
+    var specie = getRandomSpecie(listId);
     //console.log(specie.sc, encodeURIComponent);
     var url = getUrl(specie);
 
