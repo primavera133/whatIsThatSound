@@ -12,16 +12,16 @@ angular.module('myApp.services', [])
 
             switch (listId) {
                 case 'choose':
-                    bg = 'url(/images/common-starling_18168392615_o.jpg)';
+                    bg = 'url(/images/common-starling.jpg)';
                     break;
                 case 'owls':
-                    bg = 'url(/images/21004890929_5efc91470d_o.jpg)';
+                    bg = 'url(/images/stars.jpg)';
                     break;
                 case 'all':
-                    bg = 'url(/images/22249616309_578ed6cd46_o.jpg)';
+                    bg = 'url(/images/bofink.jpg)';
                     break;
                 default:
-                    bg = 'url(/images/common-starling_18168392615_o.jpg)';
+                    bg = 'url(/images/stjartmes.jpg)';
             }
 console.log(listId, bg);
             document.querySelector('body').style.backgroundImage = bg;
