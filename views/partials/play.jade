@@ -1,21 +1,28 @@
 div(ng-show="loadingSound") loading...
 
 div(ng-show="haveSound")
-    div {{getRemaining()}}
+    //div(class="wbs-remaining") {{getRemaining()}}
+    
+    div(class="wbs-controls")
+        div(class='btn-group')
+            button(ng-click='playSound()', class='btn btn-default btn-lg')
+                span(class='glyphicon glyphicon-play') 
+                span Play sound
+            button(ng-click='pauseSound()', class='btn btn-default btn-lg')
+                span(class='glyphicon glyphicon-pause') 
+                span Pause sound
+            button(ng-click='stopSound()', class='btn btn-default btn-lg')
+                span(class='glyphicon glyphicon-stop') 
+                span Stop sound
 
-    div(class='btn-group')
-        button(ng-click='playSound()', class='btn btn-default btn-sm')
-            span(class='glyphicon glyphicon-play') Play sound
-        button(ng-click='pauseSound()', class='btn btn-default btn-sm')
-            span(class='glyphicon glyphicon-pause') Pause sound
-        button(ng-click='stopSound()', class='btn btn-default btn-sm')
-            span(class='glyphicon glyphicon-stop') Stop sound
-
-    div
-        button(ng-click='showDataFn()', class='btn btn-default btn-sm') Show data
-        button(ng-click='getSound()', class='btn btn-default btn-sm') New sound
-
-    div(ng-show='showData')
+    hr(class='wbs-hr')
+    
+    div(ng-repeat='button in buttons | orderBy: button.randomSeed', class="wbs-margin-bottom")
+        button(class="btn btn-default btn-block btn-lg", ng-click="guess(button)", ng-class="{'btn-success': isCorrect(button.id), 'btn-danger': isFalseAndTried(button.id)}") 
+            span(class='glyphicon', ng-class="{'glyphicon-ok-sign pull-left': isCorrect(button.id)}") 
+            span(class='wbs-button__text'){{button.en}} - {{button.sc}}
+                
+    div(ng-show='guessCorrect')
         h2 {{recording.en}} - {{recording.gen}} {{recording.sp}} {{recording.spp}}
         p
             span Recorded by: 
@@ -32,7 +39,18 @@ div(ng-show="haveSound")
         p
             span Time: 
             span {{recording.date}} {{recording.time}}
-
+    
         p
             span License: 
             a(href="{{recording.lic}}") {{recording.lic}}
+    
+        button(ng-click='getSound()', class='btn btn-primary btn-lg btn-block') Load a new sound
+
+
+    hr(class='wbs-hr')
+    
+    a(href='/', class='btn btn-default btn-lg btn-block') Back to lists
+
+         
+
+

@@ -23,37 +23,9 @@ angular.module('myApp.services', [])
                 default:
                     bg = 'url(/images/stjartmes.jpg)';
             }
-console.log(listId, bg);
             document.querySelector('body').style.backgroundImage = bg;
         };
 
         return bgService;
-
-    }])
-    .service('SoundService', [function () {
-        var SoundService = {};
-
-        SoundService.setSoundData = function (data) {
-            this.data = data;
-        };
-
-        SoundService.getRandomRecording = function () {
-            var rand = Math.floor(Math.random() * this.data.recordings.length);
-            var recording;
-            while (!this.isValidRecording(recording)) {
-                recording = this.data.recordings[rand];
-            }
-            return recording;
-        };
-
-        SoundService.isValidRecording = function (recording) {
-            if (_.isUndefined(recording)) {
-                return false;
-            }
-
-            return !_.isUndefined(recording.file);
-        };
-
-        return SoundService;
 
     }]);

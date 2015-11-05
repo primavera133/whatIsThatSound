@@ -17,8 +17,17 @@ block body
 
     div(class='container')
         div(class='row')
-            div(ng-view, class='col-sm-6 col-sm-offset-3 wbs-plate--bg wbs-plate__bottom')
+            div(ng-view, class='col-sm-6 col-sm-offset-3 wbs-plate--bg')
 
+                
+        div(class='row')
+            div(class='col-sm-6 col-sm-offset-3 wbs-plate--bg wbs-plate__bottom')
+
+                hr(class='wbs-hr')
+
+                p All sounds come from #[a(href='http://xeno-canto.org') www.xeno-canto.org]
+                p
+                    a(href='/faq') FAQ - Frequently Asked Questions 
 
     script(src='vendors/lodash/lodash.js')
     script(src='vendors/angular/angular.js')

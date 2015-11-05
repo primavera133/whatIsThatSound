@@ -20,50 +20,61 @@ controller('AppCtrl', function ($scope, $http) {
 controller('ChooseController', ['$scope', 'BgService', function ($scope, bgService) {
     //$scope.lang_en = true;
     //$scope.lang_sc = true;
-    
-    if($scope.sound){
+
+    if ($scope.sound) {
         $scope.sound.stop();
     }
-    
+
     bgService.setBg('choose');
 
 }]).
-controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'SoundService', 'BgService', function ($scope, $http, $route, ngAudio, soundService, bgService) {
-    if($scope.sound){
+controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'BgService', function ($scope, $http, $route, ngAudio, bgService) {
+    if ($scope.sound) {
         $scope.sound.stop();
     }
+    $scope.haveSound = false;
+    $scope.loadingSound = true;
+    $scope.guessCorrect = false;
 
-    var listId = $route.current.params.listId;
     
+    var listId = $route.current.params.listId;
+
     bgService.setBg(listId);
 
-    $scope.haveSound = false;
-    $scope.showData = false;
-    $scope.loadingSound = true;
+    $scope.getSound = function () {
+        $scope.haveSound = false;
+        $scope.loadingSound = true;
+        $scope.guessCorrect = false;
+    
 
-    $http({
-        method: 'GET',
-        url: '/api/getSound',
-        params: {
-            listId: listId
-        }
-    }).
-    success(function (data, status, headers, config) {
+        $http({
+            method: 'GET',
+            url: '/api/getSound',
+            params: {
+                listId: listId
+            }
+        }).
+        success(function (data, status, headers, config) {
 
-        soundService.setSoundData(data);
+            $scope.recording = data.recording;
 
-        $scope.recording = soundService.getRandomRecording();
+            $scope.sound = ngAudio.load(data.recording.file);
+            $scope.sound.play();
+            
+            $scope.loadingSound = false;
 
-        $scope.sound = ngAudio.load($scope.recording.file);
+            $scope.haveSound = true;
 
-        $scope.loadingSound = false;
+            $scope.buttons = data.samples;
 
-        $scope.haveSound = true;
+        }).
+        error(function (data, status, headers, config) {
+            console.log('bad', data, status, headers, config);
+        });
 
-    }).
-    error(function (data, status, headers, config) {
-        console.log('bad', data, status, headers, config);
-    });
+    };
+
+    $scope.getSound();
 
     $scope.getRemaining = function () {
         if (!$scope.sound) {
@@ -87,12 +98,25 @@ controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'SoundServ
         $scope.sound.stop();
     };
 
-    $scope.showDataFn = function () {
-        $scope.showData = true;
+
+    var hasBeenTrieds = [];
+
+
+    $scope.isFalseAndTried = function (id) {
+        return _.includes(hasBeenTrieds, id) && $scope.isCorrect(id) === false;
     };
 
-    $scope.isLoading = function () {
+    $scope.isCorrect = function (id) {
+        return _.includes(hasBeenTrieds, id) && id === $scope.correctId;
+    };
 
+    $scope.guess = function (sample) {
+        hasBeenTrieds.push(sample.id);
+
+        if (sample.selected) {
+            $scope.guessCorrect = true;
+            $scope.correctId = sample.id;
+        }
     }
 
 }]);

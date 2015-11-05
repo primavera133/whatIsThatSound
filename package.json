@@ -9,6 +9,7 @@
     "express-error-handler": "^1.0.1",
     "helmet": "^0.14.0",
     "jade": "~1.11.0",
+    "lodash": "^3.10.1",
     "method-override": "^2.3.5",
     "morgan": "^1.0.0",
     "request": "^2.65.0"
