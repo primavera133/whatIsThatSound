@@ -18,6 +18,9 @@ controller('AppCtrl', function ($scope, $http) {
 
 }).
 controller('ChooseController', ['$scope', 'BgService', function ($scope, bgService) {
+    //$scope.lang_en = true;
+    //$scope.lang_sc = true;
+    
     if($scope.sound){
         $scope.sound.stop();
     }

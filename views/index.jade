@@ -3,8 +3,11 @@ extends layout
 block body
     header(ng-controller='AppCtrl', class='container')
         div(class='row')
-            div(class='col-md-6 col-md-offset-3 wts-plate--bg wts-plate__top')
-                h1 What is that sound?
+            div(class='col-md-6 col-md-offset-3 wbs-plate--bg wbs-plate__top')
+                a(href='/', class='wbs-link_text')
+                    h1 What bird sings?
+                
+                        
 
         //ul.menu
         //  li
@@ -12,7 +15,9 @@ block body
         //  li
         //    a(href='view2') view2
 
-    div(ng-view, class='container')
+    div(class='container')
+        div(class='row')
+            div(ng-view, class='col-sm-6 col-sm-offset-3 wbs-plate--bg wbs-plate__bottom')
 
 
     script(src='vendors/lodash/lodash.js')

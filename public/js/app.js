@@ -20,6 +20,10 @@ angular.module('myApp', [
                 templateUrl: 'partials/play',
                 controller: 'PlayController'
             }).
+            when('/faq/', {
+                templateUrl: 'partials/faq',
+                controller: 'FaqController'
+            }).
             otherwise({
                 redirectTo: '/'
             });

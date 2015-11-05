@@ -10,21 +10,33 @@ body {
     background-size: cover;
 }
 
-.wts-plate--bg {
+.wbs-plate--bg {
     background-color: rgba(250, 250, 250, .75);
 }
 
-.wts-plate__top {
+.wbs-plate__top {
     margin-top: 40px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
 }
 
-.wts-plate__bottom {
+.wbs-plate__bottom {
     margin-bottom: 40px;
     padding-bottom: 20px;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
+}
+
+.wbs-link_text:link,
+.wbs-link_text:hover,
+.wbs-link_text:active,
+.wbs-link_text:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+.wbs-hr {
+    border-color: #337ab7;
 }
 
 

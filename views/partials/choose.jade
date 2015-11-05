@@ -1,4 +1,24 @@
-div(class='row')
-    div(class='col-sm-6 col-sm-offset-3 wts-plate--bg wts-plate__bottom')
-        a(href='/play/all', class='btn btn-primary btn-block') Guess any
-        a(href='/play/owls', class='btn btn-primary btn-block') Guess an owl
+p Do you recognise what bird is singing? Choose a list of birds and see if you can guess who is making the sounds.
+
+//hr
+//
+//div(class='checkbox')
+//    label(for='lang_en')
+//        input(type='checkbox', id='lang_en', ng-model='lang_en') 
+//        span English
+//
+//div(class='checkbox')
+//    label(for='lang_sc')
+//        input(type='checkbox', id='lang_sc', ng-model='lang_sc') 
+//        span Scientific
+
+hr(class='wbs-hr')
+
+a(href='/play/all', class='btn btn-primary btn-block') Any bird
+a(href='/play/owls', class='btn btn-primary btn-block') Just Owls
+
+hr(class='wbs-hr')
+
+p All sounds come from #[a(href='http://xeno-canto.org') www.xeno-canto.org]
+p 
+    a(href='/faq') FAQ - Frequently Asked Questions 
