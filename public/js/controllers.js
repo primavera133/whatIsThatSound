@@ -21,31 +21,29 @@ controller('ChooseController', ['$scope', 'BgService', function ($scope, bgServi
     //$scope.lang_en = true;
     //$scope.lang_sc = true;
 
-    if ($scope.sound) {
-        $scope.sound.stop();
-    }
-
     bgService.setBg('choose');
 
 }]).
 controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'BgService', function ($scope, $http, $route, ngAudio, bgService) {
-    if ($scope.sound) {
-        $scope.sound.stop();
-    }
+    var hasBeenTrieds = [];
+    var listId = $route.current.params.listId;
+
     $scope.haveSound = false;
     $scope.loadingSound = true;
     $scope.guessCorrect = false;
 
-    
-    var listId = $route.current.params.listId;
-
     bgService.setBg(listId);
 
     $scope.getSound = function () {
+
+        if ($scope.sound) {
+            $scope.sound.stop();
+        }
+
         $scope.haveSound = false;
         $scope.loadingSound = true;
         $scope.guessCorrect = false;
-    
+
 
         $http({
             method: 'GET',
@@ -60,7 +58,7 @@ controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'BgService
 
             $scope.sound = ngAudio.load(data.recording.file);
             $scope.sound.play();
-            
+
             $scope.loadingSound = false;
 
             $scope.haveSound = true;
@@ -99,9 +97,6 @@ controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'BgService
     };
 
 
-    var hasBeenTrieds = [];
-
-
     $scope.isFalseAndTried = function (id) {
         return _.includes(hasBeenTrieds, id) && $scope.isCorrect(id) === false;
     };
@@ -117,6 +112,13 @@ controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'BgService
             $scope.guessCorrect = true;
             $scope.correctId = sample.id;
         }
-    }
+    };
+
+    //Kill sounds before leaving page]
+    $scope.$on('$locationChangeStart', function (event) {
+        if ($scope.sound) {
+            $scope.sound.stop();
+        }
+    });
 
 }]);

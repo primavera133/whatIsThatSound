@@ -35,6 +35,12 @@ body {
     text-decoration: none;
 }
 
+.wbs-h1 {
+    font-size: 66px;
+    text-align: center;
+    margin: 20px 0 40px;
+}
+
 .wbs-hr {
     border-color: #337ab7;
 }
@@ -45,7 +51,8 @@ body {
 }
 
 .wbs-controls {
-    text-align: center;    
+    text-align: center;  
+    margin: 0 0 50px 0;
 }
 
 .wbs-button__text {

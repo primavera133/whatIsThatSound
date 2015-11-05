@@ -15,7 +15,7 @@ div(ng-show="haveSound")
                 span(class='glyphicon glyphicon-stop') 
                 span Stop sound
 
-    hr(class='wbs-hr')
+    //hr(class='wbs-hr')
     
     div(ng-repeat='button in buttons | orderBy: button.randomSeed', class="wbs-margin-bottom")
         button(class="btn btn-default btn-block btn-lg", ng-click="guess(button)", ng-class="{'btn-success': isCorrect(button.id), 'btn-danger': isFalseAndTried(button.id)}") 
