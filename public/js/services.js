@@ -34,7 +34,25 @@ angular.module('myApp.services', [])
 
         return bgService;
 
-    }]).service('GameService', [function () {
+    }]).factory('LanguageService', [function () {
+    var langServ = {
+        sv: false,
+        sc: true,
+        en: false
+    };
+
+    langServ.setLang = function (lang, value) {
+        this[lang] = value;
+    };
+
+    langServ.getLang = function (lang) {
+        console.log(this[lang]);
+        return this[lang];
+    };
+
+    return langServ;
+
+}]).service('GameService', [function () {
     var gameService = {},
         correct = 0,
         incorrect = 0;

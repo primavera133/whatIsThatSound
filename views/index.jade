@@ -3,7 +3,7 @@ extends layout
 block body
     header(ng-controller='AppCtrl', class='container')
         div(class='row')
-            div(class='col-md-6 col-md-offset-3 wbs-plate--bg wbs-plate__top')
+            div(class='col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 wbs-plate--bg wbs-plate__top clearfix')
                 a(href='/', class='wbs-link_text')
                     h1(class="wbs-h1") What bird sings?
                 
@@ -17,11 +17,11 @@ block body
 
     div(class='container')
         div(class='row')
-            div(ng-view, class='col-sm-6 col-sm-offset-3 wbs-plate--bg')
+            div(ng-view, class='col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2  wbs-plate--bg clearfix')
 
                 
         div(class='row')
-            div(class='col-sm-6 col-sm-offset-3 wbs-plate--bg wbs-plate__bottom')
+            div(class='col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2  wbs-plate--bg wbs-plate__bottom clearfix')
 
                 hr(class='wbs-hr')
 

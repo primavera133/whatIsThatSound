@@ -36,10 +36,17 @@ body {
 }
 
 .wbs-h1 {
-    font-size: 66px;
+    font-size: 48px;
     text-align: center;
     margin: 20px 0 40px;
 }
+@media (min-width: 768px) {
+    .wbs-h1 {
+        font-size: 66px;
+    }
+
+}
+
 
 .wbs-hr {
     border-color: #337ab7;
@@ -61,6 +68,10 @@ body {
 
 .wbs-margin-bottom {
     margin-bottom: 10px;
+}
+
+.wbs-button {
+    white-space: normal;
 }
 
 .menu {

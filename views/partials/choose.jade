@@ -1,21 +1,38 @@
 p Do you recognise what bird is singing? Choose a list of birds and see if you can guess who is making the sounds.
 
-//hr
-//
-//div(class='checkbox')
-//    label(for='lang_en')
-//        input(type='checkbox', id='lang_en', ng-model='lang_en') 
-//        span English
-//
-//div(class='checkbox')
-//    label(for='lang_sc')
-//        input(type='checkbox', id='lang_sc', ng-model='lang_sc') 
-//        span Scientific
+div(class='well')
+    div(class='row')
+    
+        div(class="col-xs-12")
+            h2 1. Choose languages for names
+        div(class='col-xs-4')
+            div(class='checkbox ')
+                label(for='lang_sc')
+                    input(type='checkbox', id='lang_sc', ng-model='langService.sc') 
+                    span Scientific
+    
+        div(class='col-xs-4')
+            div(class='checkbox')
+                label(for='lang_en')
+                    input(type='checkbox', id='lang_en', ng-model='langService.en') 
+                    span English
+        
+        div(class='col-xs-4')
+            div(class='checkbox')
+                label(for='lang_sv')
+                    input(type='checkbox', id='lang_sv', ng-model='langService.sv') 
+                    span Swedish
+    
+{{langService.sc}} - {{langService.en}} - {{langService.sv}}
+                    
+div(class='well')
+    div(class='row')
 
-hr(class='wbs-hr')
-
-a(href='/play/all', class='btn btn-primary btn-lg btn-block') Any bird
-a(href='/play/owls', class='btn btn-primary btn-lg btn-block') Just Owls
-a(href='/play/larks', class='btn btn-primary btn-lg btn-block') Larks and pipits
-a(href='/play/warblers', class='btn btn-primary btn-lg btn-block') Warblers
+        div(class="col-xs-12")
+            h2 2. Choose a list
+            
+            a(href='/play/all', class='btn btn-primary btn-lg btn-block') Any bird
+            a(href='/play/owls', class='btn btn-primary btn-lg btn-block') Owls
+            a(href='/play/larks', class='btn btn-primary btn-lg btn-block') Larks and pipits
+            a(href='/play/warblers', class='btn btn-primary btn-lg btn-block') Warblers
 
