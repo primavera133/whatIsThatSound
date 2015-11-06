@@ -24,7 +24,7 @@ controller('ChooseController', ['$scope', 'BgService', function ($scope, bgServi
     bgService.setBg('choose');
 
 }]).
-controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'BgService', function ($scope, $http, $route, ngAudio, bgService) {
+controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'BgService', 'GameService', function ($scope, $http, $route, ngAudio, bgService, gameService) {
     var hasBeenTrieds = [];
     var listId = $route.current.params.listId;
 
@@ -33,6 +33,8 @@ controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'BgService
     $scope.guessCorrect = false;
 
     bgService.setBg(listId);
+    
+    $scope.gameService = gameService;
 
     $scope.getSound = function () {
 
@@ -111,6 +113,9 @@ controller('PlayController', ['$scope', '$http', '$route', 'ngAudio', 'BgService
         if (sample.selected) {
             $scope.guessCorrect = true;
             $scope.correctId = sample.id;
+            $scope.gameService.addCorrect();
+        } else {
+            $scope.gameService.addIncorrect();
         }
     };
 

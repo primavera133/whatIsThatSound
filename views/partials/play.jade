@@ -14,6 +14,12 @@ div(ng-show="haveSound")
             button(ng-click='stopSound()', class='btn btn-default btn-lg')
                 span(class='glyphicon glyphicon-stop') 
                 span Stop sound
+                
+    div(class='well') 
+        p  
+            h4 Your guesses so far
+        span Correct: {{gameService.getCorrect()}}
+        span(class='pull-right') Incorrect: {{gameService.getIncorrect()}}
 
     //hr(class='wbs-hr')
     

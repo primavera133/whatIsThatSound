@@ -20,6 +20,9 @@ angular.module('myApp.services', [])
                 case 'all':
                     bg = 'url(/images/bofink.jpg)';
                     break;
+                case 'larks':
+                    bg = 'url(/images/treepipit.jpg)';
+                    break;
                 default:
                     bg = 'url(/images/stjartmes.jpg)';
             }
@@ -28,4 +31,25 @@ angular.module('myApp.services', [])
 
         return bgService;
 
-    }]);
+    }]).service('GameService', [function () {
+    var gameService = {},
+        correct = 0,
+        incorrect = 0;
+
+    gameService.addCorrect = function () {
+        correct++;
+    };
+    gameService.addIncorrect = function () {
+        incorrect++;
+    };
+
+    gameService.getCorrect = function () {
+        return correct;
+    };
+    gameService.getIncorrect = function () {
+        return incorrect;
+    };
+
+    return gameService;
+
+}]);
