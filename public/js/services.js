@@ -23,6 +23,9 @@ angular.module('myApp.services', [])
                 case 'larks':
                     bg = 'url(/images/treepipit.jpg)';
                     break;
+                case 'warblers':
+                    bg = 'url(/images/willowwarbler.jpg)';
+                    break;
                 default:
                     bg = 'url(/images/stjartmes.jpg)';
             }
